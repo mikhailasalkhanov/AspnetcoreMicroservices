@@ -18,12 +18,12 @@ public class BasketController : ControllerBase
         _basketRepository = basketRepository ?? throw new ArgumentNullException(nameof(basketRepository));
     }
 
-    [HttpGet("{username}", Name = "GetBasket")]
+    [HttpGet("{userName}", Name = "GetBasket")]
     [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.OK)]
     public async Task<ActionResult<ShoppingCart>> GetBasket(string userName)
     {
         var basket = await _basketRepository.GetBasket(userName);
-        return Ok(basket ?? new ShoppingCart());
+        return Ok(basket ?? new ShoppingCart(userName));
     }
 
     [HttpPost]
