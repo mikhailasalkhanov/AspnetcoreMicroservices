@@ -5,16 +5,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Services/Discount/Diccount.API/Discount.API.csproj", "Services/Discount/Diccount.API/"]
+COPY ["Services/Discount/Discount.API/Discount.API.csproj", "Services/Discount/Discount.API/"]
 RUN dotnet restore "Services/Discount/Discount.API/Discount.API.csproj"
 COPY . .
-WORKDIR "/src/Diccount.API"
-RUN dotnet build "Diccount.API.csproj" -c Release -o /app/build
+WORKDIR "/src/Services/Discount/Discount.API"
+RUN dotnet build "Discount.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Diccount.API.csproj" -c Release -o /app/publish
+RUN dotnet publish "Discount.API.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Diccount.API.dll"]
+ENTRYPOINT ["dotnet", "Discount.API.dll"]
