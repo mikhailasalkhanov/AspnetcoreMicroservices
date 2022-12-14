@@ -34,7 +34,7 @@ public static class HostExtensions
             command.ExecuteNonQuery();
                 
             command.CommandText = "INSERT INTO Coupon(Productname, Description, Amount)" +
-                                  " VALUES('IPhone', 'IPhone discount', 105)";
+                                  " VALUES('IPhone X', 'IPhone discount', 150)";
             command.ExecuteNonQuery();
             command.CommandText = "INSERT INTO Coupon(Productname, Description, Amount)" +
                                   " VALUES('Samsung 10', 'Samsung discount', 100)";
