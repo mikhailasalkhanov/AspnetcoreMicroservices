@@ -76,7 +76,7 @@ public class RepositoryBase<T> : IAsyncRepository<T> where T : EntityBase
 
     public async Task<T?> GetByIdAsync(int id)
     {
-        return await _dbContext.Set<T>().FindAsync();
+        return await _dbContext.Set<T>().FindAsync(id);
     }
 
     public async Task<T> AddAsync(T entity)
